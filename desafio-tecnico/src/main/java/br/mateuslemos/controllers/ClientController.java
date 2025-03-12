@@ -1,5 +1,6 @@
 package br.mateuslemos.controllers;
 
+import br.mateuslemos.entity.Address;
 import br.mateuslemos.entity.Client;
 import br.mateuslemos.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
