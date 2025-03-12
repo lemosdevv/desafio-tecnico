@@ -20,12 +20,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Size(min = 1, max = 20)
     private String username;
-
     private String password;
-
     @Email
     private String email;
 
