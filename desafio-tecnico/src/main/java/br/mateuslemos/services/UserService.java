@@ -1,12 +1,12 @@
 package br.mateuslemos.services;
 
+import br.mateuslemos.entity.User;
+import br.mateuslemos.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.mateuslemos.entity.User;
-import br.mateuslemos.repository.UserRepository;
-
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,7 +41,11 @@ public class UserService {
         return false;
     }
 
-    public Optional<User> findUserById(Long userId) {
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public Optional<User> getUserById(Long userId) {
         return userRepository.findById(userId);
     }
 
@@ -55,8 +59,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long userId) {
-        userRepository.deleteById(userId);
+    // Deletar usuário
+    public boolean deleteUser(Long userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            return true;
+        } else {
+            return false; 
+        }
     }
 
     public User findUserByUsernameOrEmail(String username, String email) {
